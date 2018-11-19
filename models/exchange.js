@@ -56,11 +56,9 @@ module.exports = (sequelize, DataTypes) => {
         as: "book_isbn_1"
     });
 
-    Exchange.belongsToMany(models.Books, {
+    Exchange.belongsTo(models.Books, {
         as: "book_isbn_2"
     });
-
-
   };
 
   
