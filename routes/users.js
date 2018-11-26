@@ -1,9 +1,20 @@
-var express = require('express');
-var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
 
-module.exports = router;
+module.exports = function(app) {
+    const user = require('../controllers/user.js');
+ 
+    // Create a new Customer
+    app.post('/api/user', user.create);
+ 
+    // Retrieve all Customer
+    app.get('/api/user', user.findAll);
+ 
+    // Retrieve a single Customer by Id
+    app.get('/api/user/:id', user.findById);
+ 
+    // Update a Customer with Id
+    app.put('/api/user', user.update);
+ 
+    // Delete a Customer with Id
+    app.delete('/api/user/:id', user.delete);
+}

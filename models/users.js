@@ -36,12 +36,21 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate:{
         notEmpty: true,
-        isAlphanumeric: true,
+
       },
     },
 
     password_hash: {
       type: DataTypes.STRING
+    },
+
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate:{
+        notEmpty: true,
+        isNumeric: true,
+      },
     },
     
     student_id: {
@@ -58,7 +67,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate:{
         notEmpty: true,
-        isAlpha: true,
+
       },
     },
 
