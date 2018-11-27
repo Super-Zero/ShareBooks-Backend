@@ -4,31 +4,38 @@ const models = require('../models');
 const db = require('../config/config');
 const User = models.Users;
 
-// Post a user
-exports.create = (req, res) => {	
-	// Save to PostgreSQL database
-	console.log(req.body);
 
-	// res.json({
-	// 	message: req.body.first_name
-	// })
-
-	User.create({
-		first_name: req.body.first_name,
-		last_name: req.body.last_name,
-		email: req.body.email,
-		password_hash: req.body.password,
-		phone: req.body.phone,
-		student_id: req.body.student_id,
-		school: req.body.school,
-		student_major: req.body.student_major,
-		student_classification: req.body.student_classification,
-	}).then(user => {
-		res.json({msg: "User Created"});
-		//res.redirect('http://localhost:3000/loginform');
-	}).catch(err => {
-		console.log(err);
-		res.status(400).json({msg: "Error creating user", details: err});
+// // Post a user
+exports.create = (req, res) => {
+	User.findOne({
+		where: {
+			email: req.body.email
+		}
+	}).then(function(user) {
+		if (user){
+			
+			res.status(401).json({message: 'That email is already taken'});
+		} 
+		else{	 
+			User.create({
+				first_name: req.body.first_name,
+				last_name: req.body.last_name,
+				email: req.body.email,
+				password_hash: req.body.password,
+				phone: req.body.phone,
+				student_id: req.body.student_id,
+				school: req.body.school,
+				student_major: req.body.student_major,
+				student_classification: req.body.student_classification,
+			})
+			.then((user) => {
+				//res.json({ msg: "user created" });
+				res.status(201).json({ msg: "user created" });
+			})
+			.catch(() => {
+				res.status(400).json({ msg: "error creating user" });
+			});
+		}
 	});
 };
  
