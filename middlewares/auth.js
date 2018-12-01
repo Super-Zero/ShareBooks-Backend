@@ -2,7 +2,13 @@ const bcrypt = require('bcrypt-nodejs');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-const User = require('../models').User;
+// const User = require('../models/users');
+
+const models = require('../models');
+const db = require('../config/config');
+const User = models.Users;
+
+console.log(User);
 
 function passwordsMatch(passwordSubmitted, storedPassword) {
   return bcrypt.compareSync(passwordSubmitted, storedPassword);
@@ -29,7 +35,7 @@ passport.use(new LocalStrategy({
 );
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user.user_id);
 });
 
 passport.deserializeUser((id, done) => {
