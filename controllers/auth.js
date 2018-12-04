@@ -30,19 +30,11 @@ router.get('/error', (req, res) => {
 exports.login = (req, res) => {
   console.log(req.user);
   res.json({
-      //user_id: req.user.id,
-      first_name: req.user.first_name,
-      last_name: req.user.last_name,
-      email: req.user.email,
-      phone: req.user.phone,
-      school: req.user.school
-
-    //msg: "Success"
-
-    
-
+     msg: "Success"
   });  
 };
+
+
 
 // router.post('/login',
 //   passport.authenticate('local', { failureRedirect: '/auth/error' }),
