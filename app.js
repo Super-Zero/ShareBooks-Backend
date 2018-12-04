@@ -26,10 +26,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.use(cors({
-  origin: 'http://localhost:3000',
-  credentials: true
-}));
+// app.use(cors({
+//   origin: 'http://localhost:3000',
+//   credentials: true
+// }));
 
 // Uncomment the following if you want to serve up static assets.
 // (You must create the public folder)
@@ -59,6 +59,7 @@ app.set('views', `${__dirname}/views/`);
 
 const routes = require('./routes');
 app.use(routes)
+
 
 
 // First, make sure the Database tables and models are in sync

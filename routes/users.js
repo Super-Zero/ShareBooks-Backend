@@ -7,7 +7,7 @@ module.exports = function(app) {
     app.post('/api/user', user.create);
  
     // Retrieve all Customer
-    app.get('/api/user', user.findAll);
+    app.get('/api/user', , user.findAll);
  
     // Retrieve a single Customer by Id
     app.get('/api/user/:id', user.findById);
