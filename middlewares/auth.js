@@ -6,7 +6,7 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const models = require('../models');
 const db = require('../config/config');
-const User = models.Users;
+const User = models.user;
 
 console.log(User);
 

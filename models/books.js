@@ -1,9 +1,9 @@
-
+'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Books = sequelize.define('Books', {
+  const Books = sequelize.define('book', {
     
     book_isbn: {
-    	type: DataTypes.INTEGER,
+    	type: DataTypes.STRING,
     	allowNull: false,
         primaryKey: true,
         unique: true
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     	type: DataTypes.STRING,
     	allowNull: false,
     	validate:{
-    		isAlpha: true,
+    		notEmpty: true,
     	}
     },
 
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     	type: DataTypes.STRING,
     	allowNull: false,
     	validate:{
-    		isAlpha: true,
+    		notEmpty: true,
     	}
     },
 
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     	type: DataTypes.STRING,
     	allowNull: false,
     	validate:{
-    		isAlphanumeric: true,
+    		notEmpty: true,
     	}
     },
 
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     	type: DataTypes.STRING,
     	allowNull: false,
     	validate:{
-    		isAlpha: true,
+    		notEmpty: true,
     	}
     },
   });
@@ -47,13 +47,13 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
 
 
-    Books.belongsToMany(models.Users, {
-        through: models.Library,
+    Books.belongsToMany(models.user, {
+        through: models.library,
         foreignKey: 'book_isbn',
     });
 
-    Books.belongsToMany(models.Users,{
-      through: models.InterestedBooks,
+    Books.belongsToMany(models.user,{
+      through: models.interestedbook,
       foreignKey: 'book_isbn',
     })
 

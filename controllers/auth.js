@@ -3,7 +3,7 @@ const models = require('../models');
 const passport = require('../middlewares/auth');
 
 const router = express.Router();
-const User = models.User;
+const User = models.user;
 
 router.get('/error', (req, res) => {
   res.sendStatus(401);

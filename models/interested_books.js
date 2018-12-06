@@ -1,6 +1,6 @@
-
+'use strict';
 module.exports = (sequelize, DataTypes) => {
-    const InterestedBooks = sequelize.define('InterestedBooks', {
+    const InterestedBooks = sequelize.define('interestedbook', {
       
   
       status: {

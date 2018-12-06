@@ -1,7 +1,7 @@
-
+'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-  const Exchange = sequelize.define('Exchange', {
+  const Exchange = sequelize.define('exchange', {
     
     
   	exchange_id:{
@@ -43,20 +43,20 @@ module.exports = (sequelize, DataTypes) => {
   Exchange.associate = function(models) {
     // associations can be defined here
 
-    Exchange.belongsTo(models.Users,{
+    Exchange.belongsTo(models.user,{
       as: 'user_id_1'
     });
 
-    Exchange.belongsTo(models.Users,{
+    Exchange.belongsTo(models.user,{
       as: 'user_id_2'
     });
 
 
-    Exchange.belongsTo(models.Books, {
+    Exchange.belongsTo(models.book, {
         as: "book_isbn_1"
     });
 
-    Exchange.belongsTo(models.Books, {
+    Exchange.belongsTo(models.book, {
         as: "book_isbn_2"
     });
   };

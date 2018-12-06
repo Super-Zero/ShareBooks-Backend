@@ -2,7 +2,7 @@
 // const express = require('express');
 const models = require('../models');
 const db = require('../config/config');
-const User = models.Users;
+const User = models.user;
 
 
 // // Post a user

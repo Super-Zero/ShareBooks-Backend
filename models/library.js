@@ -1,13 +1,13 @@
-
+'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Library = sequelize.define('Library', {
+  const Library = sequelize.define('library', {
     
 
     condition: {
     	type: DataTypes.STRING,
     	allowNull: false,
     	validate:{
-    		isAlpha: true,
+    		notEmpty: true,
     	}
     }
 
