@@ -17,6 +17,14 @@ module.exports = (sequelize, DataTypes) => {
     	}
     },
 
+    image: {
+    	type: DataTypes.STRING,
+    	allowNull: false,
+    	validate:{
+    		isAlpha: true,
+    	}
+    },
+
     description:{
     	type: DataTypes.STRING,
     	allowNull: false,
@@ -43,6 +51,11 @@ module.exports = (sequelize, DataTypes) => {
         through: models.Library,
         foreignKey: 'book_isbn',
     });
+
+    Books.belongsToMany(models.Users,{
+      through: models.InterestedBooks,
+      foreignKey: 'book_isbn',
+    })
 
 
 

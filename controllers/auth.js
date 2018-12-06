@@ -29,8 +29,8 @@ router.get('/error', (req, res) => {
 //Login function
 exports.login = (req, res) => {
   console.log(req.user);
-  res.json({
-     msg: "Success"
+  res.status(200).json({
+    user_id: req.user.user_id
   });  
 };
 

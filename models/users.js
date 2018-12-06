@@ -76,7 +76,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate:{
         notEmpty: true,
-        isAlpha: true,
       },
     },
     
@@ -98,6 +97,12 @@ module.exports = (sequelize, DataTypes) => {
       through: models.Library,
       foreignKey: 'user_id',
     });
+
+    Users.belongsToMany(models.Books,{
+      through: models.InterestedBooks,
+      foreignKey: 'user_id',
+    })
+
   };
 
 

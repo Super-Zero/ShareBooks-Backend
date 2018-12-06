@@ -5,8 +5,8 @@ const userController = require('../controllers').user;
 const authentification = require('../controllers').auth;
 const passport = require('../middlewares/auth');
 
-console.log(authentification);
-console.log(userController);
+// console.log(authentification);
+// console.log(userController);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -16,11 +16,14 @@ router.get('/', function(req, res, next) {
 // User
 router.post('/api/signup', userController.create);
 
-router.get('/api/user/:id', userController.findById);
+//router.get('/api/user/:id', userController.findById);
 
 router.put('/api/user/:id', userController.update);
 
 router.delete('/api/user/:id', userController.delete);
+
+router.post('/api/profile', userController.profile);
+
 
 //Authentification
 router.post('/api/login', 

@@ -12,6 +12,7 @@ exports.create = (req, res) => {
 			email: req.body.email
 		}
 	}).then(function(user) {
+	console.log(`This is info sent from front-end: ${user}`);
 		if (user){
 			
 			res.status(401).json({message: 'That email is already taken'});
@@ -51,8 +52,11 @@ exports.findAll = (req, res) => {
 };
 
 // Find a user by Id
-exports.findById = (req, res) => {	
-	User.findById(req.params.id).then(user => {
+exports.profile = (req, res) => {	
+
+	console.log("This is the user id: ");
+	console.log(req.body.user_id);
+	User.findById(req.body.user_id).then(user => {
 			res.json(user);
 		}).catch(err => {
 			console.log(err);
