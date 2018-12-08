@@ -2,47 +2,26 @@
 // const express = require('express');
 const models = require('../models');
 const db = require('../config/config');
-const Books = models.Books;
-const Library = models.Library;
-const Sequelize = require('sequelize');
-
-const sequelize = new Sequelize('sharebooks_development', 'ctp_user', 'ctp_user', {
-	// gimme postgres, please!
-	dialect: 'postgres'
-  })
+const InterestedBooks = models.interestedbook;
+const Library = models.library;
 
 
-//SELECT * FROM books WHERE EXISTS (SELECT book_book_isbn FROM libraries WHERE user_id = 1)
 
-
-// Find a user by Id
-exports.mylibrary = (req, res) => {	
-	console.log(`This is the user id: ${req.body.user_id}`)
-	sequelize.query(
-		"SELECT * FROM books left join libraries on books.book_isbn = libraries.book_book_isbn left join users on users.user_id = libraries.user_id where users.user_id  = ?",
-		{ type: sequelize.QueryTypes.SELECT, replacements: [req.body.user_id]})
-  	.then(myLibrary => {
-	// We don't need spread here, since only the results will be returned for select queries
-	console.log(`The content of my library: ${myLibrary}`);
-		res.json(myLibrary);
-		
-  })
-  .catch(console.error)
-  .catch(() => {
-		res.status(400).json({ msg: "error getting books" });
-	});
-
-
-	// console.log("This is the user id: ");
-	// console.log(req.body.user_id);
-	// Library.findById(req.body.user_id).then(books => {
-	// 		res.json(books);
-	// 	}).catch(err => {
-	// 		console.log(err);
-	// 		res.status(500).json({msg: "error", details: err});
-	// 	});
+// // Upload interested books
+exports.uploadBooks = (req, res) => {
+    InterestedBooks.create({
+        book_isbn: req.body.book_isbn,
+        user_id: req.body.user_id,
+        status: req.body.status,
+    })
+    .then((res) => {
+    	//res.json({ msg: "user created" });
+    	res.status(201).json({ msg: "Book uploaded" });
+    })
+    .catch(() => {
+    	res.status(400).json({ msg: "error uploading book" });
+    });
 };
-
 
 
 // // FETCH All users

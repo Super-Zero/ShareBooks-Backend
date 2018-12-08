@@ -5,6 +5,7 @@ const userController = require('../controllers').user;
 const bookController = require('../controllers').books;
 const authentification = require('../controllers').auth;
 const passport = require('../middlewares/auth');
+const libraryController = require('../controllers').mylibrary;
 
 // console.log(authentification);
 // console.log(userController);
@@ -28,6 +29,11 @@ router.post('/api/profile', userController.profile);
 
 // Books
 router.post('/api/uploadbooks', bookController.uploadBooks);
+
+
+// Library
+router.post('/api/mylibrary', libraryController.mylibrary);
+
 
 //Authentification
 router.post('/api/login', 
