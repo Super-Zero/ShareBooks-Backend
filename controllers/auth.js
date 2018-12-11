@@ -3,7 +3,7 @@ const models = require('../models');
 const passport = require('../middlewares/auth');
 
 const router = express.Router();
-const User = models.User;
+const User = models.user;
 
 router.get('/error', (req, res) => {
   res.sendStatus(401);
@@ -29,8 +29,8 @@ router.get('/error', (req, res) => {
 //Login function
 exports.login = (req, res) => {
   console.log(req.user);
-  res.json({
-     msg: "Success"
+  res.status(200).json({
+    user_id: req.user.user_id
   });  
 };
 

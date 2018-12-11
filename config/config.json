@@ -2,11 +2,10 @@
   "development": {
     "username": "ctp_user",
     "password": "ctp_user",
-    "database": "test_development",
+    "database": "sharebooks_development",
     "host": "127.0.0.1",
     "dialect": "postgresql",
     "define":{
-      "freezeTableName": true,
       "underscored": true
     }
   },

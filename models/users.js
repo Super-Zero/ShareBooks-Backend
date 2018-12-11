@@ -1,9 +1,10 @@
+'use strict'; 
  const bcrypt = require('bcrypt-nodejs');
 
 
 
 module.exports = (sequelize, DataTypes) => {
-  const Users = sequelize.define('Users', {
+  const Users = sequelize.define('user', {
     user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -76,7 +77,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate:{
         notEmpty: true,
-        isAlpha: true,
       },
     },
     
@@ -94,10 +94,16 @@ module.exports = (sequelize, DataTypes) => {
   Users.associate = function(models) {
     // associations can be defined here
 
-    Users.belongsToMany(models.Books,{
-      through: models.Library,
+    Users.belongsToMany(models.book,{
+      through: models.library,
       foreignKey: 'user_id',
     });
+
+    Users.belongsToMany(models.book,{
+      through: models.interestedbook,
+      foreignKey: 'user_id',
+    })
+
   };
 
 
