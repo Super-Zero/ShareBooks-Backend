@@ -11,9 +11,9 @@ exports.create = (req, res) => {
 		where: {
 			email: req.body.email
 		}
-	}).then(function(user) {
-	console.log(`This is info sent from front-end: ${user}`);
-		if (user){
+	}).then(function(usert) {
+	console.log(`This is info sent from front-end: ${req.body.email}`);
+		if (usert){
 			
 			res.status(401).json({message: 'That email is already taken'});
 		} 

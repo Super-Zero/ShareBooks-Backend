@@ -29,6 +29,7 @@ router.get('/error', (req, res) => {
 //Login function
 exports.login = (req, res) => {
   console.log(req.user);
+  res.cookie('user', JSON.stringify(req.user))
   res.status(200).json({
     user_id: req.user.user_id
   });  

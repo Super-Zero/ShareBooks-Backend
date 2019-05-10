@@ -4,23 +4,42 @@ const models = require('../models');
 const db = require('../config/config');
 const InterestedBooks = models.interestedbook;
 const Library = models.library;
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op
 
 
 
 // // Upload interested books
-exports.uploadBooks = (req, res) => {
-    InterestedBooks.create({
-        book_isbn: req.body.book_isbn,
-        user_id: req.body.user_id,
-        status: req.body.status,
+exports.wantedBooks = (req, res) => {
+    InterestedBooks.findOne({
+		where: {
+            [Op.and]:
+                [
+                    {user_id: req.body.user_id},
+                    {book_isbn: req.body.book_isbn}
+                ]
+        } 
+	})
+    .then(function(book){
+        if (book){
+            res.status(401).json({message: 'The wanted book already exist'});
+        }
+        else{
+            InterestedBooks.create({
+                book_isbn: req.body.book_isbn,
+                user_id: req.body.user_id,
+                status: true,
+            })
+            .then((res) => {
+                //res.json({ msg: "user created" });
+                res.status(201).json({ msg: "Wanted Book uploaded" });
+            })
+            .catch(() => {
+                res.status(400).json({ msg: "Error uploading wanted book" });
+            });
+
+        }
     })
-    .then((res) => {
-    	//res.json({ msg: "user created" });
-    	res.status(201).json({ msg: "Book uploaded" });
-    })
-    .catch(() => {
-    	res.status(400).json({ msg: "error uploading book" });
-    });
 };
 
 

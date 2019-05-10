@@ -28,7 +28,6 @@ passport.use(new LocalStrategy({
       if (passwordsMatch(password, user.password_hash) === false) {
         return done(null, false, { message: 'Incorrect password.' });
       }
-
       return done(null, user, { message: 'Successfully Logged In!' });
     });
   })

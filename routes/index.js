@@ -6,6 +6,8 @@ const bookController = require('../controllers').books;
 const authentification = require('../controllers').auth;
 const passport = require('../middlewares/auth');
 const libraryController = require('../controllers').mylibrary;
+const wantedbooksController = require('../controllers').wantedbooks;
+
 
 // console.log(authentification);
 // console.log(userController);
@@ -34,6 +36,10 @@ router.post('/api/uploadbooks', bookController.uploadBooks);
 // Library
 router.post('/api/mylibrary', libraryController.mylibrary);
 
+// Wanted Books
+router.post('/api/wantedbooks', wantedbooksController.wantedBooks)
+
+router.get('/api/findbooks', libraryController.findbooks)
 
 //Authentification
 router.post('/api/login', 

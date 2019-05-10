@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     image: {
-    	type: DataTypes.STRING,
+    	type: DataTypes.TEXT('long'),
     	allowNull: false,
     	validate:{
     		notEmpty: true,
@@ -47,10 +47,10 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
 
 
-    Books.belongsToMany(models.user, {
-        through: models.library,
-        foreignKey: 'book_isbn',
-    });
+    // Books.belongsToMany(models.user, {
+    //     through: models.library,
+    //     foreignKey: 'book_isbn',
+    // });
 
     Books.belongsToMany(models.user,{
       through: models.interestedbook,
